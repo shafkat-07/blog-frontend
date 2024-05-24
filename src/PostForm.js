@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { TextField, Button, Box, Paper, Typography } from '@mui/material';
 import axios from 'axios';
 
 const PostForm = ({ onNewPost }) => {
@@ -18,22 +19,32 @@ const PostForm = ({ onNewPost }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input 
-        type="text" 
-        value={title} 
-        onChange={(e) => setTitle(e.target.value)} 
-        placeholder="Post Title" 
-        required 
-      />
-      <textarea 
-        value={content} 
-        onChange={(e) => setContent(e.target.value)} 
-        placeholder="Write your post here..." 
-        required 
-      />
-      <button type="submit">Add Post</button>
-    </form>
+    <Paper elevation={3} sx={{ p: 2 }}>
+      <Typography variant="h6" gutterBottom>Add a New Post</Typography>
+      <Box component="form" onSubmit={handleSubmit} sx={{ mb: 2 }}>
+        <TextField 
+          label="Post Title" 
+          variant="outlined" 
+          fullWidth 
+          value={title} 
+          onChange={(e) => setTitle(e.target.value)} 
+          sx={{ mb: 2 }}
+          required 
+        />
+        <TextField 
+          label="Write your post here..." 
+          variant="outlined" 
+          fullWidth 
+          multiline 
+          rows={4} 
+          value={content} 
+          onChange={(e) => setContent(e.target.value)} 
+          sx={{ mb: 2 }}
+          required 
+        />
+        <Button type="submit" variant="contained" color="primary">Add Post</Button>
+      </Box>
+    </Paper>
   );
 };
 

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Card, CardContent, Typography, Box, Grid } from '@mui/material';
 import axios from 'axios';
 
 const PostList = () => {
@@ -14,14 +15,20 @@ const PostList = () => {
   }, []);
 
   return (
-    <div>
-      {posts.map((post) => (
-        <div key={post[0]} className="blog-post">
-          <h3>{post[1]}</h3>
-          <p>{post[2]}</p>
-        </div>
-      ))}
-    </div>
+    <Box>
+      <Grid container spacing={2}>
+        {posts.map((post) => (
+          <Grid item xs={12} key={post.id}>
+            <Card>
+              <CardContent>
+                <Typography variant="h5">{post.title}</Typography>
+                <Typography variant="body2" color="textSecondary">{post.content}</Typography>
+              </CardContent>
+            </Card>
+          </Grid>
+        ))}
+      </Grid>
+    </Box>
   );
 };
 
